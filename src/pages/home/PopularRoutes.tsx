@@ -1,43 +1,34 @@
-import React, { useState } from "react";
-import { motion, useInView } from "framer-motion";
-import { MapPin, Clock, Info } from "lucide-react";
-import { useRef } from "react";
+import HeadingSection from "@/components/HeadingSection";
 import { Button } from "@/components/ui/button";
+import { CarType } from "@/types/car-rental";
+import { motion, useInView } from "framer-motion";
+import { Clock, Info, MapPin } from "lucide-react";
+import React, { useRef, useState } from "react";
+import PopularRoutesModal, {
+  PopularRoutesModalFormData,
+} from "./PopularRoutesModal";
+import { popularRouteCards } from "@/data/popularRoutes";
 
-interface CarRentalType {
-  type: string;
-  price: number;
-}
-
-interface Destination {
-  name: string;
-  image: string;
-  description?: string;
-}
-
-interface RouteInfo {
-  start: string;
-  end: string;
+export interface CardItemProps {
+  startPoint: string;
+  endPoint: string;
+  endPointImage: string;
+  carsType: CarType[];
+  distance: number;
+  travelTime: number;
 }
 
 interface PopularRouteCardProps {
-  destination: Destination;
-  route: RouteInfo;
-  distance: number;
-  travelTime: number;
-  CarRentalTypes: CarRentalType[];
+  cardProps: CardItemProps;
   index: number;
+  onClick: (cardProps: CardItemProps, selectedCarType?: CarType) => void;
 }
 
 const PopularRouteCard: React.FC<PopularRouteCardProps> = ({
-  destination,
-  route,
-  distance,
-  travelTime,
-  CarRentalTypes,
+  cardProps,
   index,
+  onClick,
 }) => {
-  const [selectedCar, setSelectedCar] = useState<CarRentalType | null>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -71,7 +62,6 @@ const PopularRouteCard: React.FC<PopularRouteCardProps> = ({
       className="group relative bg-white rounded-2xl border border-gray-200 overflow-hidden 
         shadow-lg transition-all duration-300 hover:shadow-xl hover:border-gray-300"
     >
-      {/* Image Section */}
       <div className="relative overflow-hidden">
         <motion.div
           initial={{ opacity: 0, scale: 1.1 }}
@@ -86,10 +76,10 @@ const PopularRouteCard: React.FC<PopularRouteCardProps> = ({
         >
           <div className="absolute inset-0 bg-black opacity-10 group-hover:opacity-5 transition-opacity duration-300 z-10"></div>
           <img
-            className="w-full h-48 object-cover transition-transform duration-500 
+            className="w-full h-auto lg:h-48 object-cover transition-transform duration-500 
               group-hover:scale-105 group-hover:brightness-95"
-            src={destination.image}
-            alt={destination.name}
+            src={cardProps.endPointImage}
+            alt={cardProps.endPoint}
           />
         </motion.div>
         <div className="absolute top-4 right-4 bg-white/80 rounded-full p-2 shadow-md z-20">
@@ -97,7 +87,6 @@ const PopularRouteCard: React.FC<PopularRouteCardProps> = ({
         </div>
       </div>
 
-      {/* Card Content */}
       <motion.div
         className="p-5 space-y-4"
         initial={{ opacity: 0, y: 20 }}
@@ -110,23 +99,22 @@ const PopularRouteCard: React.FC<PopularRouteCardProps> = ({
       >
         <div>
           <h3 className="text-xl font-semibold text-gray-900 tracking-tight mb-1">
-            {route.start} → {route.end}
+            {cardProps.startPoint} → {cardProps.endPoint}
           </h3>
           <p className="text-gray-500 text-sm flex items-center">
             <Clock className="mr-2 text-gray-400" size={16} />
-            {distance} km | {travelTime} phút di chuyển
+            {cardProps.distance} km | {cardProps.travelTime} phút di chuyển
           </p>
         </div>
 
-        {/* Car Rental Types */}
         <div>
           <h4 className="text-sm font-medium text-gray-600 mb-3 uppercase tracking-wider">
             Các loại xe
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            {CarRentalTypes.map((car, carIndex) => (
+            {cardProps.carsType.map((car, carIndex) => (
               <motion.button
-                key={car.type}
+                key={car.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={
                   isInView
@@ -141,19 +129,13 @@ const PopularRouteCard: React.FC<PopularRouteCardProps> = ({
                 }
                 className={`
                   p-2 rounded-lg border transition-all duration-300
-                  ${
-                    selectedCar?.type === car.type
-                      ? "bg-gray-100 border-gray-300 text-gray-900"
-                      : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-gray-400 hover:shadow-lg"
-                  }
+                  bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-gray-400 hover:shadow-lg
                   text-xs font-medium
                 `}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedCar(car)}
+                onClick={() => onClick(cardProps, car)}
               >
                 <div className="flex justify-between items-center">
-                  <div className="flex-grow text-left">{car.type}</div>
+                  <div className="flex-grow text-left">{car.name}</div>
                   <div className="font-semibold text-gray-800">
                     {car.price.toLocaleString()} ₫
                   </div>
@@ -164,6 +146,7 @@ const PopularRouteCard: React.FC<PopularRouteCardProps> = ({
         </div>
 
         <motion.button
+          onClick={() => onClick(cardProps)}
           initial={{ opacity: 0, y: 20 }}
           animate={
             isInView
@@ -180,8 +163,6 @@ const PopularRouteCard: React.FC<PopularRouteCardProps> = ({
             transition-all duration-300 
             hover:bg-gray-800 hover:shadow-lg hover:opacity-90
             border border-transparent flex items-center justify-center"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
         >
           <Info className="mr-2" size={16} />
           Đặt Chuyến Đi
@@ -192,40 +173,39 @@ const PopularRouteCard: React.FC<PopularRouteCardProps> = ({
 };
 
 export default function PopularRoutes() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalDefaultValues, setModalDefaultValues] = useState<
+    PopularRoutesModalFormData | undefined
+  >(undefined);
+
+  const onOpenModal = (card: CardItemProps, selectedCarType?: CarType) => {
+    setIsModalOpen(true);
+    setModalDefaultValues({
+      startPoint: card.startPoint,
+      endPoint: card.endPoint,
+      carType: selectedCarType?.name || "",
+      phone: "",
+    });
+  };
+
   return (
     <section className="py-16 bg-gray-50">
-      <div className="md:container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="text-3xl font-bold text-center mb-12 text-gray-900 tracking-tight"
-        >
-          Các Tuyến Du Lịnh Phổ Biến
-        </motion.h2>
+      <div ref={ref} className="md:container mx-auto px-4">
+        <HeadingSection
+          isInView={isInView}
+          title="Các tuyến du lịch phổ biến"
+        />
         <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
-          {Array(12)
-            .fill(0)
-            .map((_, index) => (
-              <PopularRouteCard
-                key={index}
-                index={index}
-                destination={{
-                  name: "Đà Lạt",
-                  image:
-                    "https://dalat.tours/vi/wp-content/uploads/2019/01/dalat_tours3.jpg",
-                }}
-                route={{ start: "Thành Phố Hồ Chí Minh", end: "Đà Lạt" }}
-                distance={300}
-                travelTime={5}
-                CarRentalTypes={[
-                  { type: "Xe 4 chỗ", price: 1200000 },
-                  { type: "Xe 7 chỗ", price: 1600000 },
-                  { type: "Xe 16 chỗ", price: 2000000 },
-                  { type: "Xe 29 chỗ", price: 2500000 },
-                ]}
-              />
-            ))}
+          {popularRouteCards.map((card, index) => (
+            <PopularRouteCard
+              key={index}
+              cardProps={card}
+              index={index}
+              onClick={onOpenModal}
+            />
+          ))}
         </div>
 
         <div className="flex justify-center mt-10">
@@ -237,6 +217,11 @@ export default function PopularRoutes() {
           </Button>
         </div>
       </div>
+      <PopularRoutesModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        defaultValues={modalDefaultValues}
+      />
     </section>
   );
 }
