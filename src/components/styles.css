@@ -1,0 +1,26 @@
+@keyframes button-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.animate-button {
+    animation: button-pulse 1500ms infinite;
+}
+
+.animate-button::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    background-color: inherit;
+    border-radius: inherit;
+    opacity: 0.5;
+    z-index: -1;
+    animation: button-pulse 1500ms infinite;
+}

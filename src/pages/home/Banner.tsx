@@ -14,7 +14,7 @@ export default function Banner() {
           delayChildren: 0.3,
           staggerChildren: 0.2,
         }}
-        className="absolute top-1/2 !-translate-y-1/2 left-20 text-center z-[99]"
+        className="absolute top-1/2 !-translate-y-1/2 left-10 sm:left-20 sm:text-center z-[1]"
       >
         <motion.h3
           initial={{ opacity: 0, scale: 0.5 }}
@@ -24,7 +24,7 @@ export default function Banner() {
             type: "spring",
             bounce: 0.5,
           }}
-          className="text-white text-[50px] font-bold mix-blend-screen"
+          className="text-white text-[32px] sm:text-[50px] font-bold mix-blend-screen"
           style={{ textShadow: "3px 3px 6px rgba(0, 0, 0, 0.8)" }}
         >
           MINH KHANG TRAVEL
@@ -37,7 +37,7 @@ export default function Banner() {
             type: "spring",
             bounce: 0.5,
           }}
-          className="text-white text-[32px] font-semibold"
+          className="text-white text-xl sm:text-[32px] font-semibold"
           style={{ textShadow: "3px 3px 6px rgba(0, 0, 0, 0.8)" }}
         >
           Uy tín - Chất Lượng - An toàn
