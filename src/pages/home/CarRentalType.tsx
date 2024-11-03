@@ -1,74 +1,51 @@
+import SectionFooterButton from "@/components/SectionFooterButton";
+import { carsType } from "@/data/carType";
+import { CarType } from "@/types/car-rental";
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
+import RentCarModal from "./RentCarModal";
 
-const data = [
-  {
-    id: 1,
-    name: "Xe 4 chỗ",
-    image: "/images/car-4-slots.png",
-    price: "200.000",
-    features: ["Sang trọng", "Riêng tư", "Tiện nghi"],
-    accentColor: "bg-blue-100 text-blue-800",
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.1,
+    },
   },
-  {
-    id: 2,
-    name: "Xe 7 chỗ",
-    image: "/images/car-7-slots.png",
-    price: "350.000",
-    features: ["Rộng rãi", "Gia đình", "Thoải mái"],
-    accentColor: "bg-green-100 text-green-800",
-  },
-  {
-    id: 3,
-    name: "Xe 16 chỗ",
-    image: "/images/car-16-slots.png",
-    price: "600.000",
-    features: ["Nhóm lớn", "Du lịch", "Chuyên nghiệp"],
-    accentColor: "bg-purple-100 text-purple-800",
-  },
-  {
-    id: 4,
-    name: "Xe 29 chỗ",
-    image: "/images/car-29-slots.png",
-    price: "900.000",
-    features: ["Sự kiện", "Tour", "Đoàn lớn"],
-    accentColor: "bg-rose-100 text-rose-800",
-  },
-];
+};
 
-export default function CarRentalType() {
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+    scale: 0.9,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      type: "spring",
+      stiffness: 120,
+      damping: 15,
+    },
+  },
+};
+
+export default function CarRentalType(): JSX.Element {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const ref = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedCar, setSelectedCar] = useState<CarType | null>(null);
+
+  const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.2,
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-      scale: 0.9,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        type: "spring",
-        stiffness: 120,
-        damping: 15,
-      },
-    },
+  const handleRentClick = (car?: CarType): void => {
+    if (car) setSelectedCar(car);
+    setIsModalOpen(true);
   };
 
   return (
@@ -94,7 +71,7 @@ export default function CarRentalType() {
         animate={isInView ? "visible" : "hidden"}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
       >
-        {data.map((car) => (
+        {carsType.map((car) => (
           <motion.div
             key={car.id}
             variants={cardVariants}
@@ -161,6 +138,7 @@ export default function CarRentalType() {
                 </div>
 
                 <motion.button
+                  onClick={() => handleRentClick(car)}
                   className={`
                     w-full py-3 rounded-lg 
                     transition-all duration-300
@@ -178,6 +156,14 @@ export default function CarRentalType() {
           </motion.div>
         ))}
       </motion.div>
+
+      <SectionFooterButton onClick={handleRentClick} title="Đặt xe ngay" />
+
+      <RentCarModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        selectedCar={selectedCar}
+      />
     </section>
   );
 }
