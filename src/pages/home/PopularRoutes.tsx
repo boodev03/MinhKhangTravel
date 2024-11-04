@@ -1,13 +1,13 @@
 import HeadingSection from "@/components/HeadingSection";
 import { Button } from "@/components/ui/button";
+import { popularRouteCards } from "@/data/popularRoutes";
 import { CarType } from "@/types/car-rental";
 import { motion, useInView } from "framer-motion";
 import { Clock, Info, MapPin } from "lucide-react";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import PopularRoutesModal, {
   PopularRoutesModalFormData,
 } from "./PopularRoutesModal";
-import { popularRouteCards } from "@/data/popularRoutes";
 
 export interface CardItemProps {
   startPoint: string;
