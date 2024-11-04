@@ -20,10 +20,12 @@ const BookingProcess = () => {
   const contentBodyRef = useRef(null);
   const isTitleInView = useInView(titleRef, {
     once: true,
+    amount: 0.1,
   });
 
   const isContentInView = useInView(contentBodyRef, {
     once: true,
+    amount: 0.1,
   });
 
   const containerVariants = {

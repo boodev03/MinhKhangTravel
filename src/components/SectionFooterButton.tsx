@@ -28,7 +28,7 @@ interface IProps {
 
 export default function SectionFooterButton({ onClick, title }: IProps) {
   const buttonRef = useRef<HTMLDivElement>(null);
-  const isButtonInView = useInView(buttonRef, { once: true });
+  const isButtonInView = useInView(buttonRef, { once: true, amount: 0.1 });
   return (
     <motion.div
       ref={buttonRef}

@@ -132,11 +132,6 @@ export default function CarRentalType(): JSX.Element {
                   ))}
                 </div>
 
-                <div className="text-3xl font-bold mb-4 text-gray-800">
-                  {car.price}
-                  <span className="text-sm ml-1 text-gray-600">VNĐ/ngày</span>
-                </div>
-
                 <motion.button
                   onClick={() => handleRentClick(car)}
                   className={`

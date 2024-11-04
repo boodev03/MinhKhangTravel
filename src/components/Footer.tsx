@@ -1,15 +1,7 @@
-"use client";
-
+import { minhKhangTravelInfo } from "@/data";
+import { ZaloIcon } from "@/icons/ZaloIcon";
 import { motion } from "framer-motion";
-import {
-  Instagram,
-  Facebook,
-  Twitter,
-  Car,
-  Phone,
-  Mail,
-  MapPin,
-} from "lucide-react";
+import { Car, MapPin, Phone } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const fadeInUp = {
@@ -25,14 +17,9 @@ const staggerChildren = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
-const hoverEffect = {
-  whileHover: { scale: 1.05, transition: { duration: 0.2 } },
-  whileTap: { scale: 0.95 },
-};
-
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-16">
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white pb-8 pt-16">
       <div className="container mx-auto px-4">
         <motion.div
           variants={staggerChildren}
@@ -61,27 +48,22 @@ export default function Footer() {
                 className="flex items-center space-x-2"
               >
                 <Phone className="h-5 w-5 text-[#3B82F6]" />
-                <span>1900.xxxx</span>
+                <span>{minhKhangTravelInfo.phoneNumber}</span>
               </motion.p>
               <motion.p
                 variants={fadeInUp}
                 className="flex items-center space-x-2"
               >
-                <Mail className="h-5 w-5 text-[#3B82F6]" />
-                <span>info@minhkhangtravel.com</span>
+                <ZaloIcon width={20} height={20} />
+                <a
+                  href={minhKhangTravelInfo.zalo}
+                  className="hover:underline"
+                  target="_blank"
+                >
+                  {minhKhangTravelInfo.zalo}
+                </a>
               </motion.p>
             </div>
-            <motion.div variants={fadeInUp} className="flex space-x-4">
-              <motion.a href="#" {...hoverEffect}>
-                <Instagram className="h-6 w-6 text-gray-400 hover:text-[#3B82F6] transition-colors duration-300" />
-              </motion.a>
-              <motion.a href="#" {...hoverEffect}>
-                <Facebook className="h-6 w-6 text-gray-400 hover:text-[#3B82F6] transition-colors duration-300" />
-              </motion.a>
-              <motion.a href="#" {...hoverEffect}>
-                <Twitter className="h-6 w-6 text-gray-400 hover:text-[#3B82F6] transition-colors duration-300" />
-              </motion.a>
-            </motion.div>
           </motion.div>
 
           <motion.div variants={fadeInUp} className="space-y-6">
