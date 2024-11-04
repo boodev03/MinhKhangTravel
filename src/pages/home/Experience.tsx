@@ -18,7 +18,7 @@ interface CounterProps {
 const Counter: FC<CounterProps> = ({ end, duration = 2, className }) => {
   const [count, setCount] = useState<number>(0);
   const nodeRef = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(nodeRef, { once: true });
+  const isInView = useInView(nodeRef, { once: true, amount: 0.1 });
 
   useEffect(() => {
     if (isInView) {
@@ -53,7 +53,7 @@ const ExperienceSection = () => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, {
     once: true,
-    margin: "-100px",
+    amount: 0.1,
   });
 
   const containerVariants: Variants = {

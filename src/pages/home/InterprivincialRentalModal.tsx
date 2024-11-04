@@ -2,6 +2,7 @@ import { AutoComplete } from "@/components/AutoComplete";
 import CommonDialog from "@/components/CommonDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { vietNamAddressFormat } from "@/data";
 import { toLowerCaseNonAccentVietnamese } from "@/helper";
 import { useEffect, useState } from "react";
@@ -28,6 +29,7 @@ export default function InterprivincialRentalModal({
   const [searchEndPointValue, setSearchEndPointValue] = useState("");
 
   const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const filteredPoints = vietNamAddressFormat.filter((item) => {
@@ -59,7 +61,9 @@ export default function InterprivincialRentalModal({
     <CommonDialog isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
       <div className="grid grid-cols-1 gap-y-5">
         <div className="space-y-2">
-          <label className="block text-gray-800 font-medium">Tỉnh đi</label>
+          <label className="block text-gray-800 font-medium text-sm">
+            Tỉnh đi <span className="text-red-600">*</span>
+          </label>
           <AutoComplete
             selectedValue={selectedStartPoint}
             onSelectedValueChange={setSelectedStartPoint}
@@ -71,7 +75,9 @@ export default function InterprivincialRentalModal({
         </div>
 
         <div className="space-y-2">
-          <label className="block text-gray-800 font-medium">Tỉnh đến</label>
+          <label className="block text-gray-800 font-medium text-sm">
+            Tỉnh đến <span className="text-red-600">*</span>
+          </label>
           <AutoComplete
             selectedValue={selectedEndPoint}
             onSelectedValueChange={setSelectedEndPoint}
@@ -83,8 +89,8 @@ export default function InterprivincialRentalModal({
         </div>
 
         <div className="space-y-2">
-          <label className="block text-gray-800 font-medium">
-            Số điện thoại liên hệ
+          <label className="block text-gray-800 font-medium text-sm">
+            Số điện thoại liên hệ <span className="text-red-600">*</span>
           </label>
           <Input
             type="tel"
@@ -92,6 +98,20 @@ export default function InterprivincialRentalModal({
             placeholder="Nhập số điện thoại của bạn"
             onChange={(e) => setPhone(e.target.value)}
             className="w-full border border-gray-200 rounded-md p-2"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label className="block text-gray-800 font-medium text-sm">
+            Lời nhắn
+          </label>
+          <Textarea
+            id="message"
+            name="message"
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Nhập lời nhắn"
+            className="w-full"
+            value={message}
           />
         </div>
       </div>

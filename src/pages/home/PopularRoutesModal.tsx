@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { carsType } from "@/data/carType";
 import React, { useEffect } from "react";
 
@@ -16,6 +17,7 @@ export interface PopularRoutesModalFormData {
   endPoint: string;
   phone: string;
   carType: string;
+  message: string;
 }
 
 interface IProps {
@@ -34,8 +36,11 @@ const PopularRoutesModal = ({
     endPoint: "",
     phone: "",
     carType: "",
+    message: "",
   });
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -54,36 +59,39 @@ const PopularRoutesModal = ({
       <div className="space-y-6">
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
-            Điểm đi
+            Điểm đi <span className="text-red-600">*</span>
           </label>
           <Input
             name="pickup"
             className="w-full"
             placeholder="Điểm đi"
-            disabled
+            disabled={defaultValues?.startPoint ? true : false}
             value={formData.startPoint}
+            required
           />
         </div>
 
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
-            Điểm đến
+            Điểm đến <span className="text-red-600">*</span>
           </label>
           <Input
             name="destination"
             className="w-full"
             placeholder="Điểm đến"
-            disabled
+            disabled={defaultValues?.endPoint ? true : false}
             value={formData.endPoint}
+            required
           />
         </div>
 
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700">
-            Chọn loại xe
+            Chọn loại xe <span className="text-red-600">*</span>
           </label>
           <Select
             name="carType"
+            required
             onValueChange={(value) =>
               setFormData((pre) => ({
                 ...pre,
@@ -111,7 +119,7 @@ const PopularRoutesModal = ({
 
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700">
-            Số điện thoại
+            Số điện thoại <span className="text-red-600">*</span>
           </label>
           <Input
             name="phone"
@@ -119,10 +127,27 @@ const PopularRoutesModal = ({
             placeholder="Nhập số điện thoại của bạn"
             required
             type="tel"
-            pattern="[0-9]{10}"
+            pattern="^(0|\+84)[3-9][0-9]{8}$"
             title="Vui lòng nhập số điện thoại 10 chữ số"
             className="w-full"
             value={formData.phone}
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label
+            htmlFor="message"
+            className="text-sm font-medium text-gray-700"
+          >
+            Lời nhắn
+          </label>
+          <Textarea
+            id="message"
+            name="message"
+            onChange={handleInputChange}
+            placeholder="Nhập lời nhắn"
+            className="w-full"
+            value={formData.message}
           />
         </div>
       </div>

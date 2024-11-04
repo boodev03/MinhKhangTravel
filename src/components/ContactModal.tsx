@@ -49,7 +49,7 @@ export default function ContactModal({ isModalOpen, setIsModalOpen }: IProps) {
             placeholder="Nhập số điện thoại của bạn"
             required
             type="tel"
-            pattern="[0-9]{10}"
+            pattern="^(0|\+84)[3-9][0-9]{8}$"
             title="Vui lòng nhập số điện thoại 10 chữ số"
             className="w-full"
             value={formData.phone}
