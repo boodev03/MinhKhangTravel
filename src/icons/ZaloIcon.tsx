@@ -1,8 +1,13 @@
-export const ZaloIcon = () => (
+interface IProps {
+  width?: number;
+  height?: number;
+}
+
+export const ZaloIcon = ({ width, height }: IProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="48"
-    height="48"
+    width={width ?? 48}
+    height={height ?? 48}
     viewBox="0 0 50 50"
     fill="none"
   >

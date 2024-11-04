@@ -50,14 +50,17 @@ export default function InterprovincialCarRental() {
 
   const isSectionInView = useInView(sectionRef, {
     once: true,
+    amount: 0.1,
   });
 
   const isFormInView = useInView(formRef, {
     once: true,
+    amount: 0.1,
   });
 
   const isMapInView = useInView(mapRef, {
     once: true,
+    amount: 0.1,
   });
 
   const onClick = (defaultEndpoint?: string) => {
@@ -210,7 +213,7 @@ export default function InterprovincialCarRental() {
                     <div className="flex items-center gap-2 text-gray-200 mb-2">
                       <MapPin className="w-5 h-5 sm:size-7" />
                       <span className="text-xl sm:text-2xl lg:text-3xl font-medium">
-                        {item.province}
+                        Đi {item.province}
                       </span>
                     </div>
                     <p className="text-gray-200 text-sm sm:text-base max-w-xl">
