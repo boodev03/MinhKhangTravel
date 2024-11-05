@@ -85,10 +85,10 @@ const BookingProcess = () => {
                   title: "1. Liên hệ đặt xe",
                   value: "step1",
                   content: [
-                    "• Gọi hotline: 1900.xxxx",
+                    "• Gọi hotline: 0704.144.144",
                     "• Nhắn tin qua Zalo/Facebook",
                     "• Gửi yêu cầu qua website",
-                    "Nhân viên tư vấn sẽ hỗ trợ bạn trong vòng 30 phút",
+                    "Minh Khang sẽ nhanh chóng phản hồi",
                   ],
                 },
                 {
@@ -99,6 +99,7 @@ const BookingProcess = () => {
                     "• Xe 4 chỗ: Phù hợp 2-4 người",
                     "• Xe 7 chỗ: Phù hợp 5-7 người",
                     "• Xe 16 chỗ: Phù hợp 8-16 người",
+                    "• Xe 29 chỗ: Phù hợp 17-29 người",
                     "Xe đời mới, đầy đủ tiện nghi, bảo hiểm",
                   ],
                 },
@@ -130,9 +131,9 @@ const BookingProcess = () => {
                   value: "step5",
                   content: [
                     "• Báo giá chi tiết",
-                    "• Đặt cọc 30% (nếu cần)",
+                    "• Đặt cọc (Liên hệ để được hướng dẫn)",
                     "• Thanh toán sau khi hoàn thành",
-                    "Nhận hóa đơn VAT theo yêu cầu",
+                    ""
                   ],
                 },
               ].map((step) => (

@@ -15,7 +15,7 @@ export interface CardItemProps {
   endPointImage: string;
   carsType: CarType[];
   distance: number;
-  travelTime: number;
+  travelTime: string;
 }
 
 interface PopularRouteCardProps {
@@ -134,7 +134,7 @@ const PopularRouteCard = ({
           </h3>
           <p className="text-gray-500 text-sm flex items-center">
             <Clock className="mr-2 text-gray-400" size={16} />
-            {cardProps.distance} km | {cardProps.travelTime} phút di chuyển
+            {cardProps.distance} km | {cardProps.travelTime} giờ di chuyển
           </p>
         </motion.div>
 
@@ -158,10 +158,7 @@ const PopularRouteCard = ({
                 onClick={() => onClick(cardProps, car)}
               >
                 <div className="flex justify-between items-center">
-                  <div className="flex-grow text-left">{car.name}</div>
-                  <div className="font-semibold text-gray-800">
-                    {car.price.toLocaleString()} ₫
-                  </div>
+                  <div className="flex-grow text-center">{car.name}</div>
                 </div>
               </motion.button>
             ))}
