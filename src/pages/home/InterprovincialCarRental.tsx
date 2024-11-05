@@ -13,14 +13,59 @@ import SectionFooterButton from "@/components/SectionFooterButton";
 const data = [
   {
     province: "Hà Nội",
-    images: "/images/ha-noi.jpg",
+    images: "/images/province/ha-noi.jpg",
     code: "Thành phố Hà Nội",
   },
   {
     province: "Đà Nẵng",
-    images: "/images/da-nang.jpg",
+    images: "/images/province/da-nang.jpg",
     code: "Thành phố Đà Nẵng",
   },
+  {
+    province: "Thừa Thiên Huế",
+    images: "/images/province/thua-thien-hue.jpg",
+    code: "Tỉnh Thừa Thiên Huế",
+  },
+  {
+    province: "Tây Ninh",
+    images: "/images/province/tay-ninh.jpg",
+    code: "Tỉnh Tây Ninh",
+  },
+  {
+    province: "Bình Dương",
+    images: "/images/province/binh-duong.jpg",
+    code: "Tỉnh Bình Dương",
+  },
+  {
+    province: "Đồng Nai",
+    images: "/images/province/dong-nai.jpg",
+    code: "Tỉnh Đồng Nai",
+  },
+  {
+    province: "Bà Rịa - Vũng Tàu",
+    images: "/images/province/ba-ria-vung-tau.jpg",
+    code: "Tỉnh Bà Rịa - Vũng Tàu",
+  },
+  {
+    province: "Bến Tre",
+    images: "/images/province/ben-tre.jpg",
+    code: "Tỉnh Bến Tre",
+  },
+  {
+    province: "Đồng Tháp",
+    images: "/images/province/dong-thap.jpg",
+    code: "Tỉnh Đồng Tháp",
+  },
+  {
+    province: "Trà Vinh",
+    images: "/images/province/tra-vinh.jpg",
+    code: "Tỉnh Trà Vinh",
+  },
+  { 
+    province: "Cà Mau",
+    images: "/images/province/ca-mau.jpg",
+    code: "Tỉnh Cà Mau",
+  }
 ];
 
 const fadeInUpVariants = {
@@ -216,7 +261,7 @@ export default function InterprovincialCarRental() {
                         Đi {item.province}
                       </span>
                     </div>
-                    <p className="text-gray-200 text-sm sm:text-base max-w-xl">
+                    <p className="text-gray-200 text-sm sm:text-base max-w-xl italic">
                       Dịch vụ thuê xe chất lượng cao, đa dạng loại xe, phục vụ
                       di chuyển liên tỉnh trên toàn quốc.
                     </p>
@@ -234,7 +279,7 @@ export default function InterprovincialCarRental() {
                           Loại xe
                         </p>
                         <p className="text-sm sm:text-base font-semibold">
-                          4-29 chỗ
+                          4-7-16-29 chỗ
                         </p>
                       </div>
                     </div>
