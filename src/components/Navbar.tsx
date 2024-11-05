@@ -10,19 +10,19 @@ const data = [
   },
   {
     title: "Thuê xe 4 chỗ",
-    href: "/thue-xe-4-cho",
+    href: "/xe-4-cho",
   },
   {
     title: "Thuê xe 7 chỗ",
-    href: "/thue-xe-7-cho",
+    href: "/xe-7-cho",
   },
   {
     title: "Thuê xe 16 chỗ",
-    href: "/thue-xe-16-cho",
+    href: "/xe-16-cho",
   },
   {
     title: "Thuê xe 29 chỗ",
-    href: "/thue-xe-29-cho",
+    href: "/xe-29-cho",
   },
 ];
 
