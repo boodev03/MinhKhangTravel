@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import PopularRoutesModal, {
   PopularRoutesModalFormData,
 } from "./PopularRoutesModal";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export interface CardItemProps {
   startPoint: string;
@@ -32,7 +33,6 @@ const PopularRouteCard = ({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  // Enhanced card animation variants
   const cardVariants = {
     hidden: {
       opacity: 0,
@@ -49,7 +49,7 @@ const PopularRouteCard = ({
         type: "spring",
         duration: 0.8,
         bounce: 0.3,
-        delay: index * 0.15,
+        delay: 0.1,
       },
     },
   };
@@ -108,7 +108,7 @@ const PopularRouteCard = ({
         <motion.div variants={imageVariants}>
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/30 group-hover:opacity-50 transition-opacity duration-500 z-10"></div>
           <img
-            className="w-full h-auto lg:h-48 object-cover"
+            className="w-full h-auto lg:h-48 aspect-video object-cover"
             src={cardProps.endPointImage}
             alt={cardProps.endPoint}
           />
@@ -142,7 +142,7 @@ const PopularRouteCard = ({
           <h4 className="text-sm font-medium text-gray-600 mb-3 uppercase tracking-wider">
             Các loại xe
           </h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-2">
             {cardProps.carsType.map((car) => (
               <motion.button
                 key={car.id}
@@ -211,7 +211,7 @@ export default function PopularRoutes() {
           isInView={isInView}
           title="Các tuyến du lịch phổ biến"
         />
-        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+        <div className="hidden xs:grid xs:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
           {popularRouteCards.map((card, index) => (
             <PopularRouteCard
               key={index}
@@ -221,6 +221,19 @@ export default function PopularRoutes() {
             />
           ))}
         </div>
+
+        <ScrollArea className="xs:hidden h-[800px]">
+          <div className="grid grid-cols-1 gap-6">
+            {popularRouteCards.map((card, index) => (
+              <PopularRouteCard
+                key={index}
+                cardProps={card}
+                index={index}
+                onClick={onOpenModal}
+              />
+            ))}
+          </div>
+        </ScrollArea>
 
         <div className="flex justify-center mt-10">
           <Button

@@ -122,7 +122,7 @@ const ExperienceSection = () => {
               <div className="flex-shrink-0 bg-gray-100 dark:bg-gray-800 p-4 rounded-xl shadow-lg">
                 <img
                   src={item.icon}
-                  alt=""
+                  alt="Minh Khang Travel - Kinh nghiệm làm việc"
                   className="w-16 h-16 object-contain"
                 />
               </div>
@@ -152,9 +152,11 @@ const ExperienceSection = () => {
           className="relative"
         >
           <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-            <img src="/images/experience.jpg" alt="Experience" />
+            <img
+              src="/images/experience.jpg"
+              alt="Minh Khang Travel - Kinh nghiệm làm việc"
+            />
           </div>
-          {/* Decorative elements with black/white gradient */}
           <div className="absolute -z-10 top-10 right-10 w-72 h-72 bg-gray-900/10 dark:bg-white/10 rounded-full blur-3xl" />
           <div className="absolute -z-10 bottom-10 left-10 w-72 h-72 bg-gray-800/10 dark:bg-gray-100/10 rounded-full blur-3xl" />
         </motion.div>

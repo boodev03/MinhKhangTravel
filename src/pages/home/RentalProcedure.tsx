@@ -70,7 +70,7 @@ const BookingProcess = () => {
           >
             <img
               src="/images/car-rental-illus.jpg"
-              alt="Car Rental Illustration"
+              alt="Minh Khang Travel - Quy trình đặt xe"
               className="w-full h-full object-cover rounded-xl"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl" />
@@ -133,7 +133,7 @@ const BookingProcess = () => {
                     "• Báo giá chi tiết",
                     "• Đặt cọc (Liên hệ để được hướng dẫn)",
                     "• Thanh toán sau khi hoàn thành",
-                    ""
+                    "",
                   ],
                 },
               ].map((step) => (

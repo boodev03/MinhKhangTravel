@@ -8,6 +8,7 @@ export const carsType: CarType[] = [
     price: "200.000",
     features: ["Sang trọng", "Riêng tư", "Tiện nghi"],
     accentColor: "bg-blue-100 text-blue-800",
+    to: "xe-4-cho",
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const carsType: CarType[] = [
     price: "350.000",
     features: ["Rộng rãi", "Gia đình", "Thoải mái"],
     accentColor: "bg-green-100 text-green-800",
+    to: "xe-7-cho",
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const carsType: CarType[] = [
     price: "600.000",
     features: ["Nhóm lớn", "Du lịch", "Chuyên nghiệp"],
     accentColor: "bg-purple-100 text-purple-800",
+    to: "xe-16-cho",
   },
   {
     id: 4,
@@ -32,5 +35,6 @@ export const carsType: CarType[] = [
     price: "900.000",
     features: ["Sự kiện", "Tour", "Đoàn lớn"],
     accentColor: "bg-rose-100 text-rose-800",
+    to: "xe-29-cho",
   },
 ];
