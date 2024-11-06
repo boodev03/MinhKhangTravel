@@ -9,6 +9,11 @@ import "./styles.css";
 export default function HomePage() {
   return (
     <>
+      <iframe
+        src="audio.html"
+        allow="autoplay; fullscreen; picture-in-picture; web-share"
+      ></iframe>
+
       <SEOConfig
         title="MinhKhangTravel - Dịch vụ cho thuê xe 4, 7, 16, 29 chỗ tại Việt Nam"
         description="MinhKhangTravel cung cấp dịch vụ cho thuê xe uy tín, tiện lợi với các loại xe 4, 7, 16, và 29 chỗ phù hợp cho mọi nhu cầu di chuyển ở Việt Nam. Đặt xe dễ dàng, giá cả phải chăng."
