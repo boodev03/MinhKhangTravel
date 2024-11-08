@@ -160,7 +160,7 @@ export default function InterprovincialCarRental() {
             Chọn điểm đến và điểm đi của quý khách
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
               <label className="block text-gray-800 font-medium mb-2">
                 Tỉnh đi
@@ -201,8 +201,12 @@ export default function InterprovincialCarRental() {
                 className="w-full border border-gray-300 rounded-md p-2"
               />
             </div>
-            <div className="col-span-3">
-              <DatePickerWithRange date={dateRange} setDate={setDateRange} />
+            <div>
+              <DatePickerWithRange
+                className="[&_button]:w-full"
+                date={dateRange}
+                setDate={setDateRange}
+              />
             </div>
           </div>
 
