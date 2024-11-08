@@ -1,11 +1,16 @@
+import { sendMessage } from "@/api";
 import { AutoComplete } from "@/components/AutoComplete";
 import CommonDialog from "@/components/CommonDialog";
+import { DatePickerWithRange } from "@/components/DatePicker";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { vietNamAddressFormat } from "@/data";
 import { toLowerCaseNonAccentVietnamese } from "@/helper";
+import { ApiPayload } from "@/types/api-payload";
 import { useEffect, useState } from "react";
+import { DateRange } from "react-day-picker";
+import { toast } from "sonner";
 
 interface IProps {
   isModalOpen: boolean;
@@ -27,9 +32,40 @@ export default function InterprivincialRentalModal({
   const [selectedEndPoint, setSelectedEndPoint] = useState("");
   const [searchStartPointValue, setSearchStartPointValue] = useState("");
   const [searchEndPointValue, setSearchEndPointValue] = useState("");
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
 
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+
+  const resetData = () => {
+    setSelectedStartPoint("");
+    setSelectedEndPoint("");
+    setPhone("");
+    setMessage("");
+    setDateRange(undefined);
+  };
+
+  const onSubmit = async () => {
+    const messageString = `Tỉnh đi: ${selectedStartPoint}\nTỉnh đến: ${selectedEndPoint}\n
+    Số điện thoại liên hệ: ${phone}\nNgày bắt đầu: ${
+      dateRange?.from ? dateRange.from.toLocaleDateString("vi-VN") : ""
+    }\nNgày kết thúc: ${
+      dateRange?.to ? dateRange.to.toLocaleDateString("vi-VN") : ""
+    }\nLời nhắn: ${message}`;
+
+    const payload: ApiPayload = {
+      phone: phone,
+      message: messageString,
+    };
+    const res = await sendMessage(payload);
+    if (res) {
+      resetData();
+      setIsModalOpen(false);
+      toast("Đặt xe thành công. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.");
+    } else {
+      toast("Đặt xe thất bại. Vui lòng thử lại sau.");
+    }
+  };
 
   useEffect(() => {
     const filteredPoints = vietNamAddressFormat.filter((item) => {
@@ -101,6 +137,14 @@ export default function InterprivincialRentalModal({
           />
         </div>
 
+        <div>
+          <DatePickerWithRange
+            className="[&_button]:!w-full"
+            date={dateRange}
+            setDate={setDateRange}
+          />
+        </div>
+
         <div className="space-y-2">
           <label className="block text-gray-800 font-medium text-sm">
             Lời nhắn
@@ -117,6 +161,7 @@ export default function InterprivincialRentalModal({
       </div>
 
       <Button
+        onClick={onSubmit}
         type="submit"
         className="w-full mt-5 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition-colors"
       >
