@@ -3,7 +3,6 @@ import { carsType } from "@/data/carType";
 import { CarType } from "@/types/car-rental";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import RentCarModal from "./RentCarModal";
 
 const containerVariants = {
@@ -92,18 +91,17 @@ export default function CarRentalType(): JSX.Element {
             <div className="relative z-10 p-6">
               <div className="relative overflow-hidden mb-6 h-48 flex items-center justify-center">
                 <AnimatePresence>
-                  <Link to={car.to}>
                     <motion.img
                       key={car.id}
                       src={car.image}
                       alt={car.name}
                       initial={{
                         scale: 1,
-                        opacity: 0.7,
+                        opacity: 1,
                       }}
                       animate={{
                         scale: hoveredCard === car.id ? 1.15 : 1,
-                        opacity: hoveredCard === car.id ? 1 : 0.7,
+                        opacity: hoveredCard === car.id ? 1 : 1,
                         transition: {
                           duration: 0.4,
                           type: "spring",
@@ -113,7 +111,6 @@ export default function CarRentalType(): JSX.Element {
                       }}
                       className="w-full h-full object-contain cursor-pointer"
                     />
-                  </Link>
                 </AnimatePresence>
               </div>
 

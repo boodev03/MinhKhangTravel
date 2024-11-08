@@ -5,6 +5,7 @@ import Experience from "./Experience";
 import InterprovincialCarRental from "./InterprovincialCarRental";
 import PopularRoutes from "./PopularRoutes";
 import RentalProcedure from "./RentalProcedure";
+import Introduction from "./Introduction";
 import "./styles.css";
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
         keywords="thuê xe, thuê xe Việt Nam, thuê xe MinhKhangTravel, thuê xe 4 chỗ, thuê xe 7 chỗ, thuê xe 16 chỗ, thuê xe 29 chỗ"
       />
       <BannerSection />
+      <Introduction />
       <CarRentalType />
       <InterprovincialCarRental />
       <PopularRoutes />
