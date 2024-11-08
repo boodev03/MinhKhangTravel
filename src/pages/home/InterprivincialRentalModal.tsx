@@ -61,7 +61,7 @@ export default function InterprivincialRentalModal({
     if (res) {
       resetData();
       setIsModalOpen(false);
-      toast("Đặt xe thành công. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.");
+      toast("Để lại lời nhắn thành công");
     } else {
       toast("Đặt xe thất bại. Vui lòng thử lại sau.");
     }

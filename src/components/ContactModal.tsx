@@ -66,7 +66,7 @@ export default function ContactModal({ isModalOpen, setIsModalOpen }: IProps) {
     };
     const res = await sendMessage(payload);
     if (res) {
-      toast("Đặt xe thành công. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.");
+      toast("Để lại lời nhắn thành công");
       resetData();
       setIsModalOpen(false);
     } else {
