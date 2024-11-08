@@ -9,6 +9,8 @@ import { Car, Info, MapPin, Shield, Users } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import InterprivincialRentalModal from "./InterprivincialRentalModal";
 import SectionFooterButton from "@/components/SectionFooterButton";
+import { DatePickerWithRange } from "@/components/DatePicker";
+import { DateRange } from "react-day-picker";
 
 const data = [
   {
@@ -61,11 +63,11 @@ const data = [
     images: "/images/province/tra-vinh.jpg",
     code: "Tỉnh Trà Vinh",
   },
-  { 
+  {
     province: "Cà Mau",
     images: "/images/province/ca-mau.jpg",
     code: "Tỉnh Cà Mau",
-  }
+  },
 ];
 
 const fadeInUpVariants = {
@@ -82,6 +84,8 @@ export default function InterprovincialCarRental() {
   const [searchEndPointValue, setSearchEndPointValue] = useState("");
 
   const [phone, setPhone] = useState("");
+
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalDefaultValues, setModalDefaultValues] = useState({
@@ -197,10 +201,14 @@ export default function InterprovincialCarRental() {
                 className="w-full border border-gray-300 rounded-md p-2"
               />
             </div>
+            <div className="col-span-3">
+              <DatePickerWithRange date={dateRange} setDate={setDateRange} />
+            </div>
           </div>
 
           <div className="flex justify-center mt-4">
             <motion.button
+              onClick={() => onClick()}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="w-fit px-5 min-w-[180px] bg-gray-900 text-white py-3 rounded-lg text-sm font-medium uppercase tracking-wider

@@ -1,5 +1,11 @@
+import { sendMessage } from "@/api";
+import { carsType } from "@/data/carType";
+import { ApiPayload } from "@/types/api-payload";
 import { useState } from "react";
+import { DateRange } from "react-day-picker";
+import { toast } from "sonner";
 import CommonDialog from "./CommonDialog";
+import { DatePickerWithRange } from "./DatePicker";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import {
@@ -9,7 +15,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { carsType } from "@/data/carType";
 import { Textarea } from "./ui/textarea";
 
 interface IProps {
@@ -29,12 +34,46 @@ export default function ContactModal({ isModalOpen, setIsModalOpen }: IProps) {
     message: "",
     carType: "",
   });
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
+
   const onChange = (key: string, value: string) => {
     setFormData((pre) => ({
       ...pre,
       [key]: value,
     }));
   };
+
+  const resetData = () => {
+    setFormData({
+      phone: "",
+      message: "",
+      carType: "",
+    });
+    setDateRange(undefined);
+  };
+
+  const onSubmit = async () => {
+    const message = `Loại xe: ${formData.carType}\nLời nhắn: ${
+      formData.message
+    }\nNgày bắt đầu: ${
+      dateRange?.from ? dateRange.from.toLocaleDateString("vi-VN") : ""
+    }\nNgày kết thúc: ${
+      dateRange?.to ? dateRange.to.toLocaleDateString("vi-VN") : ""
+    }`;
+    const payload: ApiPayload = {
+      phone: formData.phone,
+      message: message,
+    };
+    const res = await sendMessage(payload);
+    if (res) {
+      toast("Đặt xe thành công. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.");
+      resetData();
+      setIsModalOpen(false);
+    } else {
+      toast("Đặt xe thất bại. Vui lòng thử lại sau.");
+    }
+  };
+
   return (
     <CommonDialog isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
       <div className="space-y-6">
@@ -72,14 +111,20 @@ export default function ContactModal({ isModalOpen, setIsModalOpen }: IProps) {
               {carsType.map((car) => (
                 <SelectItem key={car.id} value={car.name}>
                   <div className="flex justify-between w-full">
-                    <span>
-                      {car.name}
-                    </span>
+                    <span>{car.name}</span>
                   </div>
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
+        </div>
+
+        <div>
+          <DatePickerWithRange
+            className="[&_button]:!w-full"
+            date={dateRange}
+            setDate={setDateRange}
+          />
         </div>
 
         <div className="space-y-2">
@@ -102,6 +147,7 @@ export default function ContactModal({ isModalOpen, setIsModalOpen }: IProps) {
       </div>
 
       <Button
+        onClick={onSubmit}
         type="submit"
         className="w-full mt-5 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition-colors"
       >

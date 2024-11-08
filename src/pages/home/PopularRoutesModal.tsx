@@ -1,4 +1,6 @@
+import { sendMessage } from "@/api";
 import CommonDialog from "@/components/CommonDialog";
+import { DatePickerWithRange } from "@/components/DatePicker";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -10,7 +12,9 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { carsType } from "@/data/carType";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { DateRange } from "react-day-picker";
+import { toast } from "sonner";
 
 export interface PopularRoutesModalFormData {
   startPoint: string;
@@ -38,6 +42,8 @@ const PopularRoutesModal = ({
     carType: "",
     message: "",
   });
+
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -46,6 +52,44 @@ const PopularRoutesModal = ({
       ...prev,
       [name]: value,
     }));
+  };
+
+  const resetData = () => {
+    setFormData({
+      startPoint: "",
+      endPoint: "",
+      phone: "",
+      carType: "",
+      message: "",
+    });
+
+    setDateRange(undefined);
+  };
+
+  const onSubmit = async () => {
+    const message = `Điểm đi: ${formData.startPoint}\nĐiểm đến: ${
+      formData.endPoint
+    }\nLoại xe: ${formData.carType}\nSố điện thoại liên hệ: ${
+      formData.phone
+    }\nNgày đi: ${
+      dateRange?.from ? dateRange.from.toLocaleDateString("vi-VN") : ""
+    }\nNgày về: ${
+      dateRange?.to ? dateRange.to.toLocaleDateString("vi-VN") : ""
+    }\nLời nhắn: ${formData.message}`;
+
+    const payload = {
+      phone: formData.phone,
+      message,
+    };
+
+    const res = await sendMessage(payload);
+    if (res) {
+      resetData();
+      setIsModalOpen(false);
+      toast("Đặt xe thành công. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.");
+    } else {
+      toast("Đặt xe thất bại. Vui lòng thử lại sau.");
+    }
   };
 
   useEffect(() => {
@@ -134,6 +178,14 @@ const PopularRoutesModal = ({
           />
         </div>
 
+        <div>
+          <DatePickerWithRange
+            className="[&_button]:!w-full"
+            date={dateRange}
+            setDate={setDateRange}
+          />
+        </div>
+
         <div className="space-y-2">
           <label
             htmlFor="message"
@@ -153,6 +205,7 @@ const PopularRoutesModal = ({
       </div>
 
       <Button
+        onClick={onSubmit}
         type="submit"
         className="w-full mt-5 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition-colors"
       >
