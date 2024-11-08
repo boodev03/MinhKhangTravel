@@ -16,7 +16,7 @@ export default function DefaultLayout() {
       <Outlet />
       <Footer />
       <ContactOptions />
-      <Toaster />
+      <Toaster position="top-right" />
     </>
   );
 }

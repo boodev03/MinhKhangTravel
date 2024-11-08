@@ -212,7 +212,6 @@ export default function InterprovincialCarRental() {
 
           <div className="flex justify-center mt-4">
             <motion.button
-              onClick={() => onClick()}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="w-fit px-5 min-w-[180px] bg-gray-900 text-white py-3 rounded-lg text-sm font-medium uppercase tracking-wider
