@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import ContactOptions from "./ContactOption";
 import { useLayoutEffect } from "react";
+import { Toaster } from "./ui/sonner";
 
 export default function DefaultLayout() {
   const location = useLocation();
@@ -15,6 +16,7 @@ export default function DefaultLayout() {
       <Outlet />
       <Footer />
       <ContactOptions />
+      <Toaster />
     </>
   );
 }

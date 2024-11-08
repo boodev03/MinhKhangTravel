@@ -1,4 +1,6 @@
+import { sendMessage } from "@/api";
 import CommonDialog from "@/components/CommonDialog";
+import { DatePickerWithRange } from "@/components/DatePicker";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -10,8 +12,11 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { carsType } from "@/data/carType";
+import { ApiPayload } from "@/types/api-payload";
 import { CarType } from "@/types/car-rental";
 import { useEffect, useState } from "react";
+import { DateRange } from "react-day-picker";
+import { toast } from "sonner";
 
 interface FormData {
   phone: string;
@@ -35,16 +40,33 @@ export default function RentCarModal({
     service: "",
     message: "",
   });
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setIsModalOpen(false);
-    setFormData({
-      phone: "",
-      service: selectedCar?.name || "",
-      message: "",
-    });
+    const message = `Dịch vụ: ${formData.service}\nLời nhắn để lại: ${
+      formData.message
+    }\nNgày bắt đầu: ${
+      dateRange?.from ? dateRange.from.toLocaleDateString("vi-VN") : ""
+    }\nNgày kết thúc: ${
+      dateRange?.to ? dateRange.to.toLocaleDateString("vi-VN") : ""
+    }`;
+    const payload: ApiPayload = {
+      phone: formData.phone,
+      message: message,
+    };
+    const res = await sendMessage(payload);
+    if (res) {
+      toast("Đặt xe thành công. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.");
+      setIsModalOpen(false);
+      setFormData({
+        phone: "",
+        service: "",
+        message: "",
+      });
+    } else {
+      toast("Đặt xe thất bại. Vui lòng thử lại sau.");
+    }
   };
 
   const handleInputChange = (
@@ -108,6 +130,14 @@ export default function RentCarModal({
                 ))}
               </SelectContent>
             </Select>
+          </div>
+
+          <div>
+            <DatePickerWithRange
+              className="[&_button]:!w-full"
+              date={dateRange}
+              setDate={setDateRange}
+            />
           </div>
 
           <div className="space-y-2">
