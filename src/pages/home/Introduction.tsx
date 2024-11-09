@@ -44,7 +44,7 @@ export default function Introduction() {
       <div className="grid grip-cols-1 md:grid-cols-2 gap-4">
         <div className="order-2 md:order-1">
           <img
-            className="max-w-[75%] mx-auto"
+            className="max-w-[75%] mx-auto rounded-md"
             src="/images/car-7-slots2.png"
             alt="Minh Khang Travel Introduction"
           />

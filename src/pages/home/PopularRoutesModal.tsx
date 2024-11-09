@@ -152,7 +152,7 @@ const PopularRoutesModal = ({
                 <SelectItem key={car.id} value={car.name}>
                   <div className="flex justify-between w-full">
                     <span>
-                      {car.name} - {car.price}
+                      {car.name}
                     </span>
                   </div>
                 </SelectItem>
