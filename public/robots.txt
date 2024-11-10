@@ -1,0 +1,6 @@
+# Robots.txt file for https://www.minhkhangtravel.vn/
+
+User-agent: *  
+Allow: /  
+
+Sitemap: https://www.minhkhangtravel.vn/sitemap.xml
