@@ -16,9 +16,9 @@ export default function HomePage() {
         keywords="thuê xe, thuê xe Việt Nam, thuê xe MinhKhangTravel, thuê xe 4 chỗ, thuê xe 7 chỗ, thuê xe 16 chỗ, thuê xe 29 chỗ"
       />
       <BannerSection />
+      <InterprovincialCarRental />X
       <Introduction />
       <CarRentalType />
-      <InterprovincialCarRental />
       <PopularRoutes />
       <RentalProcedure />
       <Experience />
