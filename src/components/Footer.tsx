@@ -29,7 +29,7 @@ export default function Footer() {
         >
           <motion.div variants={fadeInUp} className="space-y-6">
             <NavLink to="/">
-              <img
+            <img
                 src="/images/logo.png"
                 alt="Minh Khang Travel"
                 className="max-h-[200px] w-full object-cover rounded-[12px]"
@@ -63,6 +63,11 @@ export default function Footer() {
                   {minhKhangTravelInfo.zalo}
                 </a>
               </motion.p>
+            <img
+                src="/bocongthuong.webp"
+                alt="Minh Khang Travel"
+                className="max-h-[80px] object-cover rounded-[12px]"
+              />
             </div>
           </motion.div>
 
@@ -87,6 +92,7 @@ export default function Footer() {
                 </motion.li>
               ))}
             </ul>
+            
           </motion.div>
 
           <motion.div variants={fadeInUp} className="space-y-6">
