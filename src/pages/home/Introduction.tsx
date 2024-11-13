@@ -21,16 +21,17 @@ export default function Introduction() {
       <div className="grid grip-cols-1 md:grid-cols-2 gap-4">
         <div className="mb-3 flex items-center">
           <p className="italic text-base md:text-lg lg:text-xl leading-relaxed md:leading-loose lg:leading-loose text-gray-700 md:text-gray-800 lg: text-gray-900 p-4 md:-6 lg:p-8 text-justify">
-            Nổi bật trong đội ngũ xe của <span className="text-blue-600">Minh Khang Travel </span> là dòng xe Kia
-            Carnival - dòng xe 7 chỗ cao cấp, lý tưởng cho những hành trình dài
-            và các chuyến đi gia đình hoặc nhóm bạn. Xe Carnival sở hữu thiết kế
-            sang trọng, nội thất rộng rãi, cùng hệ thống ghế ngồi bọc da cao
-            cấp, có thể điều chỉnh linh hoạt. Hệ thống giải trí tiên tiến và
-            điều hòa không khí đa chiều mang đến cho hành khách trải nghiệm thư
-            giãn tối đa trên suốt hành trình. Đặc biệt, xe Carnival được tích
-            hợp các công nghệ an toàn tiên tiến như hệ thống cảnh báo va chạm và
-            hỗ trợ phanh tự động, giúp hành khách yên tâm tận hưởng chuyến đi
-            một cách an toàn và tiện nghi nhất.
+            Nổi bật trong đội ngũ xe của{" "}
+            <span className="text-blue-600">Minh Khang Travel </span> là dòng xe
+            Kia Carnival - dòng xe 7 chỗ cao cấp, lý tưởng cho những hành trình
+            dài và các chuyến đi gia đình hoặc nhóm bạn. Xe Carnival sở hữu
+            thiết kế sang trọng, nội thất rộng rãi, cùng hệ thống ghế ngồi bọc
+            da cao cấp, có thể điều chỉnh linh hoạt. Hệ thống giải trí tiên tiến
+            và điều hòa không khí đa chiều mang đến cho hành khách trải nghiệm
+            thư giãn tối đa trên suốt hành trình. Đặc biệt, xe Carnival được
+            tích hợp các công nghệ an toàn tiên tiến như hệ thống cảnh báo va
+            chạm và hỗ trợ phanh tự động, giúp hành khách yên tâm tận hưởng
+            chuyến đi một cách an toàn và tiện nghi nhất.
           </p>
         </div>
         <div>
@@ -51,16 +52,15 @@ export default function Introduction() {
         </div>
         <div className="mb-3 flex items-center order-1 md:order-2">
           <p className="italic text-base md:text-lg lg:text-xl leading-relaxed md:leading-loose lg:leading-loose text-gray-700 md:text-gray-800 lg: text-gray-900 p-4 md:-6 lg:p-8 text-justify">
-            Nổi bật trong đội ngũ xe của <span className="text-blue-600">Minh Khang Travel </span> là dòng xe Kia
-            Carnival - dòng xe 7 chỗ cao cấp, lý tưởng cho những hành trình dài
-            và các chuyến đi gia đình hoặc nhóm bạn. Xe Carnival sở hữu thiết kế
-            sang trọng, nội thất rộng rãi, cùng hệ thống ghế ngồi bọc da cao
-            cấp, có thể điều chỉnh linh hoạt. Hệ thống giải trí tiên tiến và
-            điều hòa không khí đa chiều mang đến cho hành khách trải nghiệm thư
-            giãn tối đa trên suốt hành trình. Đặc biệt, xe Carnival được tích
-            hợp các công nghệ an toàn tiên tiến như hệ thống cảnh báo va chạm và
-            hỗ trợ phanh tự động, giúp hành khách yên tâm tận hưởng chuyến đi
-            một cách an toàn và tiện nghi nhất.
+            Dòng xe Kia Carnival không chỉ là lựa chọn hoàn hảo cho các chuyến
+            đi gia đình mà còn rất phù hợp trong việc phục vụ du lịch với số
+            lượng hành khách vừa phải. Xe được trang bị các tiện ích hiện đại
+            như cổng sạc USB cho từng hàng ghế, hệ thống âm thanh sống động, và
+            khoang hành lý rộng rãi, giúp hành khách thoải mái mang theo hành lý
+            cá nhân mà không lo chật chội. Carnival còn có khả năng vận hành
+            mượt mà trên nhiều địa hình, đảm bảo mang lại trải nghiệm di chuyển
+            êm ái và thoải mái nhất, dù là trên các cung đường ngắn trong thành
+            phố hay những hành trình dài khám phá các địa điểm du lịch xa.
           </p>
         </div>
       </div>
