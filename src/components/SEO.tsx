@@ -15,7 +15,7 @@ const SEOConfig = ({ title, description, keywords }: SEOProps) => (
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/assets/open_graph.png" />
-    <meta property="og:url" content="https://thuanhighclean.com" />
+    <meta property="og:url" content="https://www.minhkhangtravel.vn/" />
     <meta property="og:type" content="website" />
   </Helmet>
 );
